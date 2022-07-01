@@ -1,21 +1,17 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider             = "mysql"
-  url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model Inquiry {
-  id      Int     @id @default(autoincrement())
-  name    String
-  email   String
-  subject String?
-  message String
+model User {
+  id      Int      @id @default(autoincrement()) //autoincrement => id의 숫자를 자동으로 증가시켜준다.
+  phone   Int?     @unique // unique => database에 유일한속성
+  email   String?  @unique
+  name    String // ?를 붙이지 않으면 자동으로 required된다.
+  created DateTime @default(now())
+  updated DateTime @updatedAt
 }
