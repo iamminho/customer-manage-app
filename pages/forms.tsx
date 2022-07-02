@@ -4,6 +4,8 @@ export default function Forms() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formErrors, setFormErrors] = useState("");
+  const [emailErrors, setEmailErrors] = useState("");
   const onUsernameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
@@ -24,6 +26,12 @@ export default function Forms() {
   };
   const onSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault(); // submit 이후에도 form의 내용 보존
+    if (username === "" || email === "" || password === "") {
+      setFormErrors("All fields are required");
+    }
+    if (!email.includes("@")) {
+      setEmailErrors("email is required");
+    }
   };
 
   return (
@@ -42,6 +50,7 @@ export default function Forms() {
         placeholder="Email"
         required
       />
+      {emailErrors}
       <input
         value={password}
         onChange={onPasswordChange}
