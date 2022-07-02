@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 
 // <Reason why use React hook forms>
+// Less code (v)
 // Better validation
 // Better Errors (set, clear, display)
 // Have control over inputs
 // Don't deal with events
-// Easier Inputs
+// Easier Inputs (v)
 
 export default function Forms() {
   const { register, watch } = useForm();
