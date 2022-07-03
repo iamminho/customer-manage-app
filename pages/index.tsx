@@ -1,5 +1,7 @@
-let Homepage = () => {
-  return <div>welcome next.js</div>;
+import type { NextPage } from "next";
+
+const Home: NextPage = () => {
+  return null;
 };
 
-export default Homepage;
+export default Home;
