@@ -22,7 +22,14 @@ interface LoginForm {
 }
 
 export default function Forms() {
-  const { register, handleSubmit } = useForm<LoginForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    //formState를 통해 errors를 화면에 표시할 수 있다.
+  } = useForm<LoginForm>({
+    mode: "onChange",
+  });
   // register = input과 state를 연결시켜준다.
   const onValid = (data: LoginForm) => {
     console.log("im valid bby");
@@ -30,6 +37,7 @@ export default function Forms() {
   const onInValid = (errors: FieldErrors) => {
     console.log("errors:", errors);
   };
+  console.log(errors);
   return (
     <form onSubmit={handleSubmit(onValid, onInValid)}>
       <input
@@ -43,11 +51,22 @@ export default function Forms() {
         type="text"
         placeholder="Username"
       />
+      {errors.username?.message}
       <input
-        {...register("email", { required: "email is requried" })}
+        {...register("email", {
+          required: "Email is requried",
+          // validate: error를 custom하기 위한 방법
+          // 조건문의 false는 message에 담기게 된다.
+          validate: {
+            notGmail: (value) =>
+              !value.includes("@gmail.com") || "gmail is not allowed",
+            // !value.includes("@gmail.com") ? "" : "gmail is not allowed",
+          },
+        })}
         type="email"
         placeholder="Email"
       />
+      {errors.email?.message}
       <input
         {...register("password", {
           required: "password is requried",
