@@ -1,18 +1,49 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+function cls(...classnames: string[]) {
+  return classnames.join(" ");
+}
+
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
 
 export default function Enter() {
+  const { register } = useForm<EnterForm>();
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => setMethod("email");
   const onPhoneClick = () => setMethod("phone");
   return (
-    <div>
-      <h3 className="text-3xl font-bold text-center">Enter to Carrot</h3>
-      <div>
-        <div>
-          <h5>Enter using:</h5>
-          <div>
-            <button onClick={onEmailClick}>Email</button>
-            <button onClick={onPhoneClick}>Phone</button>
+    <div className="mt-16">
+      <h3 className="text-3xl font-bold text-center">Login</h3>
+      <div className="mt-8">
+        <div className="flex flex-col items-center">
+          <h5 className="text-sm text-gray-500 font-medium">Enter using:</h5>
+          <div className="mt-8 grid grid-cols-2 gap-16 w-full border-b">
+            <button
+              className={cls(
+                "pb-4 font-medium border-b",
+                method === "email"
+                  ? "border-orange-500 text-orange-400"
+                  : "border-transparent text-gray-300"
+              )}
+              onClick={onEmailClick}
+            >
+              Email address
+            </button>
+            <button
+              className={cls(
+                "pb-4 font-medium border-b",
+                method === "phone"
+                  ? "border-orange-500 text-orange-400 "
+                  : "border-transparent text-gray-300"
+              )}
+              onClick={onPhoneClick}
+            >
+              Phone number
+            </button>
           </div>
         </div>
         <form>
@@ -21,7 +52,9 @@ export default function Enter() {
             {method === "phone" ? "Phone number" : null}
           </label>
           <div>
-            {method === "email" ? <input type="email" required /> : null}
+            {method === "email" ? (
+              <input name="email" type="email" required />
+            ) : null}
             {method === "phone" ? (
               <div>
                 <span>+82</span>
