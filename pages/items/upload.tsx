@@ -30,6 +30,22 @@ const Upload: NextPage = () => {
       <div>
         <label
           className="block text-sm font-medium text-gray-600 mb-1"
+          htmlFor="name"
+        >
+          이름
+        </label>
+        <div className="rounded-md shadow-sm flex items-center mb-3">
+          <input
+            id="name"
+            type="text"
+            placeholder="상품이름"
+            className="appearance-none w-full px-3 py-4 pl-7
+                border-gray-300  rounded-md shadow-sm placeholder-gray-400           
+                focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+          />
+        </div>
+        <label
+          className="block text-sm font-medium text-gray-600 mb-1"
           htmlFor="price"
         >
           가격
