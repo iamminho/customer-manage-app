@@ -18,8 +18,8 @@ export default function Layout({
   return (
     <div>
       <div
-        className="fixed bg-white w-full text-lg text-gray-700 
-      border-b top-0 flex items-center justify-center font-medium py-3"
+        className="fixed bg-white w-full text-lg text-gray-700 max-w-xl
+      border-b top-0 flex items-center justify-center font-medium py-3 "
       >
         {title ? <span>{title}</span> : null}
       </div>
@@ -27,7 +27,7 @@ export default function Layout({
       {hasTabBar ? (
         <nav
           className="bg-white text-gray-800 border-t fixed bottom-0 pb-10 pt-3
-        flex justify-between items-center"
+        flex justify-between items-center max-w-xl"
         ></nav>
       ) : null}
     </div>
