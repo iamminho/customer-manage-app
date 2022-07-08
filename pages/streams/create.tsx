@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Layout from "../../components/layout";
+import Button from "../../components/button";
 
 const Create: NextPage = () => {
   return (
@@ -56,9 +57,7 @@ const Create: NextPage = () => {
             rows={4}
           />
         </div>
-        <button className=" w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none ">
-          Go live
-        </button>
+        <Button text="라이브 시작하기" />
       </div>
     </Layout>
   );

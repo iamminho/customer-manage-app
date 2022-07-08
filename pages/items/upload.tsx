@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
 import Layout from "../../components/layout";
+import Button from "../../components/button";
+import Input from "../../components/input";
 
 const Upload: NextPage = () => {
   return (
@@ -30,46 +32,15 @@ const Upload: NextPage = () => {
           </label>
         </div>
         <div>
-          <label
-            className="block text-sm font-medium text-gray-600 mb-1"
-            htmlFor="name"
-          >
-            이름
-          </label>
-          <div className="rounded-md shadow-sm flex items-center mb-3">
-            <input
-              id="name"
-              type="text"
-              placeholder="상품이름"
-              className="appearance-none w-full px-3 py-4 pl-7
-                border-gray-300  rounded-md shadow-sm placeholder-gray-400           
-                focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-            />
-          </div>
-          <label
-            className="block text-sm font-medium text-gray-600 mb-1"
-            htmlFor="price"
-          >
-            가격
-          </label>
-          <div className="rounded-md shadow-sm relative flex items-center">
-            <div className="absolute left-0 pl-3 flex items-center justify-center">
-              <span className="text-gray-500 text-sm pointer-events-none">
-                ₩
-              </span>
-            </div>
-            <input
-              id="price"
-              type="text"
-              placeholder="10,000"
-              className="appearance-none w-full px-3 py-4 pl-7
-                border-gray-300  rounded-md shadow-sm placeholder-gray-400           
-                focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-            />
-            <div className="absolute pointer-events-none right-0 pr-3 flex items-center text-gray-500">
-              <span>원</span>
-            </div>
-          </div>
+          <Input label="이름" name="name" type="text" placeholder="상품이름" />
+          <Input
+            label="가격"
+            name="price"
+            kind="price"
+            placeholder="10,000"
+            type="text"
+            required
+          />
         </div>
         <div className="block my-3">
           <label className="block text-sm font-medium text-gray-600 mb-1">
@@ -82,14 +53,7 @@ const Upload: NextPage = () => {
             rows={4}
           />
         </div>
-        <button
-          className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4
-          border border-transparent rounded-md shadow-sm text-sm font-medium
-          focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none
-          mt-3 w-full"
-        >
-          상품 올리기
-        </button>
+        <Button text="상품 올리기" />
       </div>
     </Layout>
   );
