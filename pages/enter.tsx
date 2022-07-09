@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { cls } from "../libs/utils";
+import Input from "../components/input";
 import Button from "../components/button";
 
 interface EnterForm {
@@ -45,38 +46,24 @@ export default function Enter() {
           </div>
         </div>
         <form className="flex flex-col mt-8">
-          <label htmlFor="input" className="text-sm font-medium text-gray-600">
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
           <div className="mt-2">
             {method === "email" ? (
-              <input
-                id="input"
-                className="appearance-none w-full px-3 py-2
-                border-gray-300 my-3 rounded-md shadow-sm placeholder-gray-400           
-                focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                name="email"
-                type="email"
-                required
-              />
+              <div className="pb-4">
+                <Input
+                  label="Email address"
+                  name="email"
+                  kind="text"
+                  type="email"
+                />
+              </div>
             ) : null}
             {method === "phone" ? (
-              <div className="flex rounded-md shadow-sm mt-2 mb-3">
-                <span
-                  className="flex items-center justify-center px-3 rounded-l-md
-                  border border-r-0 border-gray-300 bg-gray-50 text-gray-500
-                  select-none text-sm"
-                >
-                  +82
-                </span>
-                <input
-                  id="input"
+              <div className="mt-2 mb-4 w-full">
+                <Input
+                  label="Phone number"
+                  name="phone"
+                  kind="phone"
                   type="number"
-                  required
-                  className=" appearance-none w-full px-3 py-2 rounded-r-md shadow-sm placeholder-gray-400
-                  border border-transparent border-gray-300 
-                focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
             ) : null}
