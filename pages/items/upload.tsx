@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Layout from "../../components/layout";
 import Button from "../../components/button";
 import Input from "../../components/input";
+import TextArea from "../../components/textarea";
 
 const Upload: NextPage = () => {
   return (
@@ -43,15 +44,7 @@ const Upload: NextPage = () => {
           />
         </div>
         <div className="block my-3">
-          <label className="block text-sm font-medium text-gray-600 mb-1">
-            제품 설명
-          </label>
-          <textarea
-            className="mt-1 shadow-sm w-full rounded-md
-         focus:ring-orange-500 focus:border-orange-500
-        border-gray-300"
-            rows={4}
-          />
+          <TextArea label="제품설명" name="description" />
         </div>
         <Button text="상품 올리기" />
       </div>
