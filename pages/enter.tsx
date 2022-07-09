@@ -10,10 +10,19 @@ interface EnterForm {
 }
 
 export default function Enter() {
-  const { register } = useForm<EnterForm>();
+  const { register, handleSubmit, reset } = useForm<EnterForm>();
   const [method, setMethod] = useState<"email" | "phone">("email");
-  const onEmailClick = () => setMethod("email");
-  const onPhoneClick = () => setMethod("phone");
+  const onEmailClick = () => {
+    reset();
+    setMethod("email");
+  };
+  const onPhoneClick = () => {
+    reset();
+    setMethod("phone");
+  };
+  const onValid = (data: EnterForm) => {
+    console.log(data);
+  };
   return (
     <div className="mt-16 px-4">
       <h3 className="text-3xl font-bold text-center">Login</h3>
@@ -45,27 +54,26 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form className="flex flex-col mt-8">
-          <div className="mt-2">
+        <form onSubmit={handleSubmit(onValid)} className="flex flex-col mt-8">
+          <div className="mt-2 pb-4">
             {method === "email" ? (
-              <div className="pb-4">
-                <Input
-                  label="Email address"
-                  name="email"
-                  kind="text"
-                  type="email"
-                />
-              </div>
+              <Input
+                register={register("email", { required: true })}
+                required={true}
+                label="Email address"
+                name="email"
+                type="email"
+              />
             ) : null}
             {method === "phone" ? (
-              <div className="mt-2 mb-4 w-full">
-                <Input
-                  label="Phone number"
-                  name="phone"
-                  kind="phone"
-                  type="number"
-                />
-              </div>
+              <Input
+                register={register("phone")}
+                required={true}
+                label="Phone number"
+                name="phone"
+                kind="phone"
+                type="number"
+              />
             ) : null}
           </div>
           {method === "email" ? <Button text={"Get login link"} /> : null}
