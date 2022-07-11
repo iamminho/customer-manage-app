@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { cls } from "../libs/client/utils";
-import Input from "../components/input";
-import Button from "../components/button";
-import useMutation from "../libs/client/useMutation";
+import { cls } from "@libs/client/utils";
+import Input from "@components/input";
+import Button from "@components/button";
+import useMutation from "@libs/client/useMutation";
 
 interface EnterForm {
   email?: string;
@@ -71,7 +71,7 @@ export default function Enter() {
           <div className="mt-2 pb-4">
             {method === "email" ? (
               <Input
-                register={register("email", { required: true })}
+                register={register("email")}
                 required={true}
                 label="Email address"
                 name="email"

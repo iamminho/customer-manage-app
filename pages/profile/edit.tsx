@@ -1,9 +1,16 @@
 import type { NextPage } from "next";
-import Layout from "../../components/layout";
-import Button from "../../components/button";
-import Input from "../../components/input";
+import Layout from "@components/layout";
+import Button from "@components/button";
+import Input from "@components/input";
+import { useForm } from "react-hook-form";
+
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
 
 const EditProfile: NextPage = () => {
+  const { register, handleSubmit, reset } = useForm<EnterForm>();
   return (
     <Layout canGoBack>
       <div className="pb-10 px-4 space-y-5">
@@ -26,6 +33,7 @@ const EditProfile: NextPage = () => {
           label="이메일(Eamil)"
           name="email"
           type="email"
+          register={register("email")}
           id="email"
           placeholder="이메일(Eamil)을 입력해주세요"
           required
@@ -34,6 +42,7 @@ const EditProfile: NextPage = () => {
           label="전화번호 "
           name="phone"
           type="number"
+          register={register("phone")}
           placeholder="010-0000-0000"
           kind="phone"
           required
