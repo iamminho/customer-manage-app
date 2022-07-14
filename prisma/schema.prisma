@@ -18,4 +18,15 @@ model User {
   name    String // ?를 붙이지 않으면 자동으로 required된다.
   created DateTime @default(now())
   updated DateTime @updatedAt
+  tokens  Token[]
+}
+
+model Token {
+  id      Int      @id @default(autoincrement())
+  payload String   @unique // user의 email이나 phone정보가 들어감
+  user    User     @relation(fields: [userId], references: [id])
+  userId  Int
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+
 }
